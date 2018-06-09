@@ -1,4 +1,4 @@
-﻿namespace Neighborstash.Core.Repositories
+﻿namespace Neighborstash.Core.Contracts
 {
     public interface INeighbostashDbSettings
     {

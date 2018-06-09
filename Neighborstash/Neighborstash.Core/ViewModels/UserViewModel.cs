@@ -1,16 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
 namespace Neighborstash.Core.ViewModels
 {
-    public class UserViewModel
+    public class UserViewModel : BaseViewModel,IUserViewModel
     {
-        public string UserName { get; set; }
-        public string UserEmail { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        private string _userName;
+        private string _userEmail;
+        private string _firstName;
+        private string _lastName;
+
+        public string UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                RaisePropertyChanged(() => UserName);
+            }
+        }
+
+        public string UserEmail
+        {
+            get => _userEmail;
+            set
+            {
+                _userEmail = value;
+                RaisePropertyChanged(()=>UserEmail);
+            }
+        }
+
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                RaisePropertyChanged(()=>FirstName);
+            }
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                RaisePropertyChanged(() =>LastName);
+            }
+        }
 
         public override string ToString()
         {
@@ -23,6 +65,26 @@ namespace Neighborstash.Core.ViewModels
             }
 
             return sb.ToString();
+        }
+
+
+        public MvxCommand CloseCommand { get; set; }
+
+        public UserViewModel() : base()
+        {
+            CloseCommand = new MvxCommand(() => { Close(this); });
+        }
+
+        public override async void Start()
+        {
+            base.Start();
+            await ReloadDataAsync();
+        }
+
+        protected override async Task InitializeAsync()
+        {
+            // pick the selected user 
+            //user = await _userDemographicsDataService.GetUserDemogratphics(_username);
         }
     }
 }

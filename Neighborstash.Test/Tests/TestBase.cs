@@ -2,13 +2,20 @@
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
+using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
+using Neighborstash.Core.Contracts;
 using Neighborstash.Core.Repositories;
+using Neighborstash.Core.Utils;
 
 namespace Neighborstash.Test
 {
     public class TestBase
     {
         public NeighborstashContext NSContext { get; set; }
+        
+
+
         public TestBase()
         {
            
@@ -22,8 +29,8 @@ namespace Neighborstash.Test
             var buildInfo = await context.Database.RunCommandAsync<BsonDocument>(bi);
             return buildInfo;
         }
-        
 
+      
         protected string ConvertToSha256(string randomString)
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();

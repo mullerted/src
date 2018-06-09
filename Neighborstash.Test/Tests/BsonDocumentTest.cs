@@ -11,6 +11,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using Neighborstash.Core.Models;
+using Neighborstash.Core.Contracts;
 using Neighborstash.Core.Repositories;
 using Neighborstash.Core.ViewModels;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -239,9 +240,9 @@ namespace Neighborstash.Test
 
         }
 
-        [TestCase("localhost", 27017, "Neighborstash")]
+        [TestCase("localhost", 27017, "Neighborstash", "c:\\temp\\brain.png")]
         [ExpectedException(typeof(ConnectionToDbException))]
-        public async Task UploadFile(string hostname, int portNum, string databaseName)
+        public async Task UploadFileAsync(string hostname, int portNum, string databaseName, string filename)
         {
             var nsContext = new NeighborstashContext(new NeighbostashDbSettings
             {
@@ -249,9 +250,22 @@ namespace Neighborstash.Test
                 DatabaseName = databaseName
             });
 
-            var gf =  await nsContext.StoreImageAsync(@"C:\Users\mhadish1\Pictures\adl-2.jpg");
 
-            Console.WriteLine($"imageid: {gf.ToString()}");
+            var bucket = new GridFSBucket(nsContext.Database);
+            var options = new GridFSUploadOptions
+            {
+                Metadata = new BsonDocument("contentType", "image/png")
+            };
+
+            using (var fs = new FileStream(filename, FileMode.Open))
+            {
+               var imageId = await bucket
+                    .UploadFromStreamAsync(filename, fs); 
+                
+                Console.WriteLine(imageId);
+            }
+
+           
             
         }
 
@@ -539,6 +553,9 @@ namespace Neighborstash.Test
             }
 
         }
+
+
+       
 
     }
 

@@ -1,0 +1,7 @@
+﻿namespace Neighborstash.Core.Contracts
+{
+    public interface IUserAddressDataService
+    {
+
+    }
+}

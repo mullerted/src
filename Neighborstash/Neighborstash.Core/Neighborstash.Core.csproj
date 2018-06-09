@@ -16,6 +16,7 @@
     <PackageReference Include="MvvmCross.Core" Version="5.2.1" />
     <PackageReference Include="MvvmCross.Forms" Version="5.2.1" />
     <PackageReference Include="MvvmCross.Platform" Version="5.2.1" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="4.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="2.3.4.270" />
   </ItemGroup>
@@ -47,7 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataServices\" />
+    <Folder Include="Converters\" />
+    <Folder Include="DataServices\General\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Fake\" />
+    <Folder Include="Messages\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 	
 </Project>
