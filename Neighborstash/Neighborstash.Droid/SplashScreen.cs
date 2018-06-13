@@ -11,6 +11,7 @@ namespace Neighborstash.Droid
         , Icon = "@mipmap/ic_launcher"
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
+        ,ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
         , ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {

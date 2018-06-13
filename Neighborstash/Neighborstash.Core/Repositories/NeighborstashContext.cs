@@ -44,6 +44,8 @@ namespace Neighborstash.Core.Repositories
 
         public IMongoCollection<UserAddress> UserAddresses => Database.GetCollection<UserAddress>("userAddress");
 
+        public IMongoCollection<NeighborStasher> NeighborStasher => Database.GetCollection<NeighborStasher>("neighborStasher");
+
         public IMongoCollection<SecurityQeustion> UserSecurityQuestions =>
             Database.GetCollection<SecurityQeustion>("SecurityQuestion");
 

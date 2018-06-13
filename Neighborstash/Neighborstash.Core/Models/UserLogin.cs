@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -17,5 +18,19 @@ namespace Neighborstash.Core.Models
 
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime Createdate { get; set; }
+    }
+
+    public partial class NeighborStasher
+    {
+        [BsonId]
+        public string Username { get; set; }
+        public List<Stasher> Stashers { get; set; }
+    }
+
+    public partial class Stasher
+    {
+        [BsonId]
+        public string Username { get; set; }
+        public int Rank { get; set; }
     }
 }

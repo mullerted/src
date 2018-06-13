@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using Neighborstash.Core.Contracts;
 
 namespace Neighborstash.Core.ViewModels
 {
-    public class UserViewModel : BaseViewModel,IUserViewModel
+    public class UserDetailViewModel : BaseViewModel,IUserViewModel
     {
         private string _userName;
         private string _userEmail;
@@ -70,7 +72,7 @@ namespace Neighborstash.Core.ViewModels
 
         public MvxCommand CloseCommand { get; set; }
 
-        public UserViewModel() : base()
+        public UserDetailViewModel() : base()
         {
             CloseCommand = new MvxCommand(() => { Close(this); });
         }
@@ -85,6 +87,23 @@ namespace Neighborstash.Core.ViewModels
         {
             // pick the selected user 
             //user = await _userDemographicsDataService.GetUserDemogratphics(_username);
+        }
+
+        private readonly IUserDataService _userDataService;
+
+        public MvxCommand AddToSavedUsersCommand
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                    {
+                       // await _userDataService.AddSavedUser(_userDataService.GetAciveUser().UserId, SelectedUser.);
+
+                        //await _dialogService.ShowAlertAsync();
+                    });
+
+
+            }
         }
     }
 }

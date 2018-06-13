@@ -193,10 +193,48 @@ namespace Neighborstash.Test
                 };
 
                var result = nsContext.UserSecurityQuestions.InsertOneAsync(secQuestionAnswer);
-               Console.WriteLine($"sercQuestion ID: {result.Id}");
+                Console.WriteLine($"sercQuestion ID: {result.Id}");
+               
+                
             }
 
 
+        }
+
+        [TestCase("localhost", 27017, "Neighborstash")]
+        [ExpectedException(typeof(ConnectionToDbException))]
+        public void ShouldAddNeighborStasher(string hostname, int portNum, string databaseName)
+        {
+            var nsContext = new NeighborstashContext(new NeighbostashDbSettings
+            {
+                ConnectionString = $"mongodb://{hostname}:{portNum}",
+                DatabaseName = databaseName
+            });
+
+            for (var i = 0; i < 10; i++)
+            {
+                var mystashers = new NeighborStasher
+                {
+                    Username = $"hithm_{i}",
+
+                    Stashers = new List<Stasher>
+                    {
+                        new Stasher{ Username = $"hithm_{i+1}", Rank =1 },
+                        new Stasher{ Username = $"hithm_{i+2}", Rank =2 },
+                        new Stasher{ Username = $"hithm_{i+3}", Rank =3 }
+                    }
+                };
+
+                nsContext.NeighborStasher.InsertOne(mystashers);
+
+            }
+        }
+        private static int GetStasherId(int i)
+        {
+            var random = new Random();
+            var randNum = random.Next(0, 10);
+            var stasherId = i == randNum ? i++ : randNum;
+            return stasherId;
         }
 
         [TestCase("localhost", 27017, "Neighborstash")]
@@ -484,7 +522,7 @@ namespace Neighborstash.Test
             // or 
             var user = nsContext.Users
                 .Find(r => r.Username == "hithm_0")
-                .Project(r=> new UserViewModel
+                .Project(r=> new UserDetailViewModel
                 {
                     UserEmail = r.Username,
                     FirstName = r.Firstname,

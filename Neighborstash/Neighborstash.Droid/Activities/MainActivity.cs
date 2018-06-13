@@ -6,6 +6,7 @@ using MvvmCross.Forms.Droid;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Platform;
 using Xamarin.Forms;
+using Xamarin.Facebook;
 
 namespace Neighborstash.Droid
 {
@@ -19,6 +20,8 @@ namespace Neighborstash.Droid
             TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(bundle);
+
+            
 
             Forms.Init(this, bundle);
 
