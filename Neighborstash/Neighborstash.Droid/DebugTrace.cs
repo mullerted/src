@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using MvvmCross.Platform.Platform;
 
@@ -20,7 +20,7 @@ namespace Neighborstash.Droid
         {
             try
             {
-                Debug.WriteLine(string.Format(tag + ":" + level + ":" + message, args));
+                Debug.WriteLine(tag + ":" + level + ":" + message, args);
             }
             catch (FormatException)
             {

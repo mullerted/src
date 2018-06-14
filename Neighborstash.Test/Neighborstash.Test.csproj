@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3242733-74B9-4C98-8101-23C1F379011B}</ProjectGuid>
+    <ProjectGuid>{C136BE37-ABFB-470A-B015-4077DFF966ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Neighborstash.Test</RootNamespace>
@@ -20,6 +20,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,14 +58,29 @@
     <Reference Include="MongoDB.Driver.Core, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\libs\SharedPackages\MongoDB.Driver.Core.2.6.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.GridFS">
-      <HintPath>..\..\..\..\..\.nuget\packages\mongodb.driver.gridfs\2.3.0\lib\netstandard1.5\MongoDB.Driver.GridFS.dll</HintPath>
+    <Reference Include="MongoDB.Driver.GridFS, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MongoDB.Driver.GridFS.2.6.1\lib\net45\MongoDB.Driver.GridFS.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\..\..\..\..\.nuget\packages\mvvmcross.core\5.2.1\lib\dotnet\MvvmCross.Core.dll</HintPath>
+    <Reference Include="MvvmCross.Binding, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Binding.5.3.1\lib\net45\MvvmCross.Binding.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\..\..\..\..\.nuget\packages\mvvmcross.platform\5.2.1\lib\dotnet\MvvmCross.Platform.dll</HintPath>
+    <Reference Include="MvvmCross.Binding.Wpf, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Binding.5.3.1\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Core.5.3.1\lib\net45\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Binding.5.3.1\lib\net45\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Platform.5.3.1\lib\net45\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.Wpf, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Platform.5.3.1\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Wpf, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\SharedPackages\MvvmCross.Core.5.3.1\lib\net45\MvvmCross.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\libs\SharedPackages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
@@ -80,22 +96,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BsonDocumentTest.cs" />
     <Compile Include="Tests\ConnectionToDbException.cs" />
-    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Tests\LinqAggregateTest.cs" />
     <Compile Include="Tests\MongoDbTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\UnitTest1.cs" />
+    <Compile Include="Tests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Neighborstash\Neighborstash.Core\Neighborstash.Core.csproj">
-      <Project>{76f5db20-d2ec-445d-b1df-6968ae2f129e}</Project>
+      <Project>{c011d499-fa7c-4d59-a4de-ff65443e5be3}</Project>
       <Name>Neighborstash.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

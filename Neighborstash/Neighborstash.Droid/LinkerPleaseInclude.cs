@@ -1,11 +1,9 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using System.Windows.Input;
 using Android.App;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
-
-#pragma warning disable 219
 
 namespace Neighborstash.Droid
 {

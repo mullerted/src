@@ -73,7 +73,7 @@ namespace Neighborstash.Test
 
         [TestCase("localhost", 27017, "Neighborstash")]
         [ExpectedException(typeof(ConnectionToDbException))]
-        public void ShouldAddUsertoDb(string hostname,int portNum, string databaseName)
+        public void ShouldAddUserstoDb(string hostname,int portNum, string databaseName)
         {
             var nsContext = new NeighborstashContext(new NeighbostashDbSettings
             {
@@ -91,18 +91,21 @@ namespace Neighborstash.Test
                         new Core.Models.Phone
                         {
                             Type = "home",
-                            Num = $"{i}{i}{i}-{i}{i}{i}-{i}{i}{i}{i}"
+                            Num = $"{i}{i}{i}-{i}{i}{i}-{i}{i}{i}{i}",
+                            IsPrefered = false
                              
                         },
                         new Core.Models.Phone
                         {
                             Type =  "work",
-                            Num = $"{i*2}{i*2}{i*2}-{i}{i}{i}-{i}{i}{i}{i}"
+                            Num = $"{i*2}{i*2}{i*2}-{i}{i}{i}-{i}{i}{i}{i}",
+                            IsPrefered = false
                         },
                         new Core.Models.Phone
                         {
                             Type = "cell",
-                            Num = $"{i*3}{i*3}{i*3}-{i}{i}{i}-{i}{i}{i}{i}"
+                            Num = $"{i*3}{i*3}{i*3}-{i}{i}{i}-{i}{i}{i}{i}",
+                            IsPrefered = true
                         }
                     },
 
@@ -144,7 +147,7 @@ namespace Neighborstash.Test
                         Addr2 = $"## {i}",
                         City = "Laurel",
                         State = "MD",
-                        Pcode = "20724",
+                        Pcode = i%2 ==0 ? "20724" : (20701 + i).ToString(),
                         Country = "USA"
                     },
                     Geo = new Geo()

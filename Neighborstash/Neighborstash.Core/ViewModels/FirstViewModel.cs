@@ -1,32 +1,15 @@
-﻿using System.Windows.Input;
-using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace Neighborstash.Core.ViewModels
 {
-    public class FirstViewModel : MvxViewModel
+    public class FirstViewModel
+        : MvxViewModel
     {
-        readonly IMvxNavigationService navigationService;
-
-        public FirstViewModel(IMvxNavigationService navigationService)
+        string hello = "Welcome to Neighborstash!";
+        public string Hello
         {
-            this.navigationService = navigationService;
+            get { return hello; }
+            set { SetProperty(ref hello, value); }
         }
-
-        string yourNickname = string.Empty;
-
-        public string YourNickname
-        {
-            get { return yourNickname; }
-            set
-            {
-                if (SetProperty(ref yourNickname, value))
-                    RaisePropertyChanged(() => Hello);
-            }
-        }
-
-        public string Hello => $"Hello {YourNickname}";
-
-        public ICommand ShowAboutPageCommand => new MvxAsyncCommand(() => navigationService.Navigate<AboutViewModel>());
     }
 }

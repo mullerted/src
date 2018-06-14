@@ -1,17 +1,21 @@
-﻿using Foundation;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Forms.iOS;
+﻿using MvvmCross.Core.ViewModels;
+using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
+using Foundation;
 using UIKit;
 
 namespace Neighborstash.iOS
 {
     [Register("AppDelegate")]
-    public partial class AppDelegate : MvxFormsApplicationDelegate
+    public partial class AppDelegate : MvxApplicationDelegate
     {
-        public override UIWindow Window { get; set; }
+        public override UIWindow Window
+        {
+            get;
+            set;
+        }
 
-        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
+        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
@@ -20,8 +24,6 @@ namespace Neighborstash.iOS
 
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
-
-            LoadApplication(setup.FormsApplication);
 
             Window.MakeKeyAndVisible();
 

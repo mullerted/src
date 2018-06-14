@@ -1,23 +1,31 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Forms.Core;
-using MvvmCross.Forms.iOS;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
+using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform.Platform;
-using Neighborstash.Core;
 using UIKit;
 
 namespace Neighborstash.iOS
 {
-    public class Setup : MvxFormsIosSetup
+    public class Setup : MvxIosSetup
     {
-        public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window)
+        public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
             : base(applicationDelegate, window)
         {
         }
 
-        protected override IMvxApplication CreateApp() => new CoreApp();
-        protected override MvxFormsApplication CreateFormsApplication() => new Core.Application();
-        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
+        public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
+            : base(applicationDelegate, presenter)
+        {
+        }
+
+        protected override IMvxApplication CreateApp()
+        {
+            return new Core.App();
+        }
+
+        protected override IMvxTrace CreateDebugTrace()
+        {
+            return new DebugTrace();
+        }
     }
 }
-
